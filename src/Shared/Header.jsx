@@ -42,8 +42,8 @@ const Header = () => {
                                 <li className={location.pathname === "/myjobs" ? "text-indigo-600 " : ""}>
                             <Link to="/myjobs" >My Jobs</Link>
                         </li>
-                                <li className={location.pathname === "/addajob" ? "text-indigo-600 " : ""}>
-                            <Link to="/addajob" >Add a Job</Link>
+                                <li className={location.pathname === "/addComic" ? "text-indigo-600 " : ""}>
+                            <Link to="/addComic" >Add Comic</Link>
                         </li>
                             </div>: "" 
                         }

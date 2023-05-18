@@ -7,7 +7,6 @@ export const AuthContext = createContext(null);
 
 const auth = getAuth(app) ;
 const provider = new GoogleAuthProvider() ;
-const gitHubProvider = new GithubAuthProvider() ;
 
 // eslint-disable-next-line react/prop-types
 const AuthProviders = ({children}) => {
@@ -35,9 +34,6 @@ const AuthProviders = ({children}) => {
         return signInWithPopup(auth , provider)
     }
 
-    const handleGithub = () => {
-        return signInWithPopup(auth , gitHubProvider)
-    }
 
 
 
@@ -66,7 +62,7 @@ const AuthProviders = ({children}) => {
         handleUpdateProfile,
         logout ,
         handleGoogle,
-        handleGithub,
+        
     } ;
     return (
         <AuthContext.Provider value={authInfo}>
