@@ -1,9 +1,12 @@
 import React from 'react';
+import Banner from './Banner';
+import Gellary from './Gellary';
 
 const Home = () => {
     return (
         <div>
-            <h1>this is home</h1>
+                <Banner></Banner>
+                <Gellary></Gellary>
         </div>
     );
 };
