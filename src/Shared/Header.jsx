@@ -33,9 +33,21 @@ const Header = () => {
                         <li className={location.pathname === "/" ? "text-indigo-600 " : ""}>
                             <p><Link to="/">Home</Link></p>
                         </li>
-                        <li className={location.pathname === "/populerRecipe" ? "text-indigo-600 " : ""}>
-                            <Link to="/populerRecipe" >Popular Recipes</Link>
+                        <li className={location.pathname === "/alljobs" ? "text-indigo-600 " : ""}>
+                            <Link to="/alljobs" >All Jobs</Link>
                         </li>
+     
+                        {
+                            user ?  <div className='flex gap-5'>
+                                <li className={location.pathname === "/myjobs" ? "text-indigo-600 " : ""}>
+                            <Link to="/myjobs" >My Jobs</Link>
+                        </li>
+                                <li className={location.pathname === "/addajob" ? "text-indigo-600 " : ""}>
+                            <Link to="/addajob" >Add a Job</Link>
+                        </li>
+                            </div>: "" 
+                        }
+
                         <li className={location.pathname === "/blog" ? "text-indigo-600" : ""}>
                             <Link to="/blog" className='mt-[15px]'>Blog</Link>
                         </li>

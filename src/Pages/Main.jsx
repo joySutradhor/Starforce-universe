@@ -8,7 +8,6 @@ const Main = () => {
         <div>
             <Header></Header>
             <div className='relative'><Outlet></Outlet></div>
-        
             <Footer></Footer>
            
         </div>
