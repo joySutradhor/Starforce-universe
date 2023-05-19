@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Login and Register/Provider';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 const PrivateRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
+    const location =  useLocation() ;
     if (loading) {
         return <div className='grid grid-cols-1 absolute gap-2 top-[50%] left-[40%]'>
             <progress className="progress progress-info w-56" value="40" max="100"></progress>
@@ -16,7 +17,7 @@ const PrivateRoute = ({ children }) => {
     if(user) {
             return children ;
     }
-    return <Navigate to="/login"></Navigate>
+    return <Navigate to="/login" state={{from: location}} replace></Navigate>
 
 };
 

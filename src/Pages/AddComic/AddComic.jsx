@@ -18,8 +18,9 @@ const AddComic = () => {
         const ratting = form.ratting.value;
         const quantity = form.quantity.value;
         const description = form.description.value;
-
-        const newComic = { name, sellerName, email, cetegory, price, ratting, quantity, description }
+        const url = form.url.value;
+        console.log(url)
+        const newComic = { name, sellerName, email, cetegory, price, ratting, quantity, description , url }
         fetch(`http://localhost:5000/comics`, {
             method: "POST",
             headers: {
@@ -38,55 +39,61 @@ const AddComic = () => {
                 <div className="form-control w-full">
                     <label className="input-group">
                         <span>Comic Name</span>
-                        <input type="text" name='name' className="input input-bordered w-full" />
+                        <input type="text" name='name' className="input input-bordered w-full"  required/>
                     </label>
                 </div>
                 <div className="form-control">
                     <label className="input-group">
                         <span>Seller Name</span>
-                        <input type="text" name='sellerName' defaultValue={user?.displayName} className="input input-bordered  w-full" />
+                        <input type="text" name='sellerName' defaultValue={user?.displayName} className="input input-bordered  w-full " required />
                     </label>
                 </div>
 
                 <div className="form-control">
                     <label className="input-group">
                         <span>Email</span>
-                        <input type="email" defaultValue={user?.email} name='email' className="input input-bordered  w-full" />
+                        <input type="email" defaultValue={user?.email} name='email' className="input input-bordered  w-full " required />
                     </label>
                 </div>
 
                 <div className="form-control">
                     <label className="input-group">
                         <span>Cetegory</span>
-                        <input type="text" name='cetegory' placeholder='Make sure write marvel , star wars or avengers' className="input input-bordered  w-full" />
+                        <input type="text" name='cetegory' placeholder='Make sure write marvel , star wars or avengers' className="input input-bordered  w-full " required />
                     </label>
                 </div>
 
                 <div className="form-control">
                     <label className="input-group">
                         <span>Price</span>
-                        <input type="number" name='price' className="input input-bordered  w-full" />
+                        <input type="text" defaultValue="$"  name='price' className="input input-bordered  w-full " required />
                     </label>
                 </div>
                 <div className="form-control">
                     <label className="input-group">
                         <span>Ratting</span>
-                        <input type="text" name='ratting' className="input input-bordered  w-full" />
+                        <input type="text" name='ratting' className="input input-bordered  w-full " required />
                     </label>
                 </div>
                 <div className="form-control">
                     <label className="input-group">
                         <span>Quantity</span>
-                        <input type="number" name='quantity' className="input input-bordered  w-full" />
+                        <input type="text" name='quantity' className="input input-bordered  w-full " required />
                     </label>
                 </div>
                 <div className="form-control">
                     <label className="input-group">
                         <span>Description</span>
-                        <input type="text" name='description' className="input input-bordered  w-full" />
+                        <input type="text" name='description' className="input input-bordered  w-full " required />
                     </label>
                 </div>
             </div>
+            <div className="form-control mx-20 mb-8">
+                    <label className="input-group">
+                        <span>Url</span>
+                        <input type="text" name='url' className="input input-bordered  w-full " required />
+                    </label>
+                </div>
             <div className='px-20 pb-10'>
                 <input type="submit" value="Submit" className="p-3 bg-sky-300 rounded-lg w-full  font-bold " />
             </div>
