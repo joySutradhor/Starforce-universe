@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Login and Register/Provider';
+import Swal from 'sweetalert2';
 
 const AddComic = () => {
 
@@ -29,7 +30,17 @@ const AddComic = () => {
             body: JSON.stringify(newComic)
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                form.reset();
+                Swal.fire({
+                    position: 'top drawer ',
+                    icon: 'success',
+                    title: 'Added Successfully',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+
+            })
 
     }
     return (
