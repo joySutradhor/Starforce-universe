@@ -13,6 +13,7 @@ import Home from './Pages/Home/Home';
 import AddComic from './Pages/AddComic/AddComic';
 import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
 import AllComics from './Pages/AllComics/AllComics';
+import Details from './Pages/AllComics/Details';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,12 @@ const router = createBrowserRouter([
         element : <AllComics></AllComics> ,
         loader : () => fetch(`http://localhost:5000/comics`) 
       } ,
+      {
+        path : "/details/:id",
+        element : <PrivateRoute><Details></Details></PrivateRoute> ,
+        loader : ({params}) => fetch(`http://localhost:5000/comics/${params.id}`)
+        
+      },
       {
         path: "/addComic",
         element: <PrivateRoute><AddComic></AddComic></PrivateRoute>

@@ -3,7 +3,7 @@ import { AuthContext } from '../../Login and Register/Provider';
 
 const AddComic = () => {
 
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     console.log(user)
 
 
@@ -19,17 +19,17 @@ const AddComic = () => {
         const quantity = form.quantity.value;
         const description = form.description.value;
 
-        const newComic = { name, sellerName, email, cetegory, price, ratting, quantity, description  }
-        fetch(`http://localhost:5000/comics` , {
-            method : "POST" ,
-            headers : {
-                "content-type" : "application/json"
-            } ,
-            body : JSON.stringify(newComic)
+        const newComic = { name, sellerName, email, cetegory, price, ratting, quantity, description }
+        fetch(`http://localhost:5000/comics`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(newComic)
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
-   
+            .then(res => res.json())
+            .then(data => console.log(data))
+
     }
     return (
         <form className='mx-auto' onSubmit={handleSubmit}>
@@ -58,7 +58,7 @@ const AddComic = () => {
                 <div className="form-control">
                     <label className="input-group">
                         <span>Cetegory</span>
-                        <input type="text" name='cetegory' className="input input-bordered  w-full" />
+                        <input type="text" name='cetegory' placeholder='Make sure write marvel , star wars or avengers' className="input input-bordered  w-full" />
                     </label>
                 </div>
 

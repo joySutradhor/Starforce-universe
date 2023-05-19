@@ -1,32 +1,53 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
 
 
 
 const AllComics = () => {
     const comics = useLoaderData();
-    const {sellerName , name, price , quantity, cetegory , _id} = comics ;
-    console.log(comics)
+    const [comic , setComic] = useState([]);
+    const handleSearch = (event) => {
+        event.preventDefault()
+        const form = event.target ;
+        const search = form.search.value;
+        console.log(search)
+        console.log(comics)
+        comics.filter(data => {
+            const newData = data.price > 70 ;
+            console.log(newData)
+        })
+        
+        
+        
+    }
+    console.log(comic)
     return (
-        <div className="overflow-x-auto w-full">
-            <table className="table w-full">
-                {/* head */}
-                <thead>
-                    <tr>
-                        <th>
-                           
-                        </th>
-                        <th>Seller Name</th>
-                        <th>Comic Name</th>
-                        <th>category Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th></th>
-                    </tr>
-                </thead>
+        <div>
+            <form onSubmit={handleSearch} className='flex justify-end  items-center mx-5 py-2 gap-5'> <input type="text" placeholder="Ensure comic name is matched" name='search' className="input input-bordered input-accent w-full max-w-xs" />
+                <div>
+                    <button className="btn btn-outline btn-accent">Search</button>
+                </div>
 
-                {
-                    comics.map(comic =><tbody key={comic._id}>
+            </form>
+            <div className="overflow-x-auto w-full">
+                <table className="table w-full">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th>
+
+                            </th>
+                            <th>Seller Name</th>
+                            <th>Comic Name</th>
+                            <th>category Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    {
+                        comics.map(comic => <tbody key={comic._id}>
                             <tr>
                                 <th>
                                     <button className="btn btn-circle btn-outline">
@@ -45,16 +66,17 @@ const AllComics = () => {
                                 <td>{comic.price}</td>
                                 <td>{comic.quantity}</td>
                                 <th>
-                                <button className="btn btn-outline btn-accent">Details</button>
+                                    <Link to={`/details/${comic._id}`}><button className="btn btn-outline btn-accent">Details</button></Link>
                                 </th>
                             </tr>
 
 
 
                         </tbody>)
-                }
+                    }
 
-            </table>
+                </table>
+            </div>
         </div>
     );
 };
