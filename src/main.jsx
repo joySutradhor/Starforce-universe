@@ -14,6 +14,7 @@ import AddComic from './Pages/AddComic/AddComic';
 import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
 import AllComics from './Pages/AllComics/AllComics';
 import Details from './Pages/AllComics/Details';
+import MyComic from './Pages/Mycomic/MyComic';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
         path: "/addComic",
         element: <PrivateRoute><AddComic></AddComic></PrivateRoute>
       },
+      {
+        path: "/myComic",
+        element : <PrivateRoute><MyComic></MyComic></PrivateRoute>
+      },
+
       {
         path: "/login",
         element: <Login></Login>

@@ -39,8 +39,8 @@ const Header = () => {
      
                         {
                             user ?  <div className='flex gap-5'>
-                                <li className={location.pathname === "/myjobs" ? "text-indigo-600 " : ""}>
-                            <Link to="/myjobs" >My Jobs</Link>
+                                <li className={location.pathname === "/myComic" ? "text-indigo-600 " : ""}>
+                            <Link to="/myComic" >My Comics</Link>
                         </li>
                                 <li className={location.pathname === "/addComic" ? "text-indigo-600 " : ""}>
                             <Link to="/addComic" >Add Comic</Link>
