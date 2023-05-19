@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Login and Register/Provider';
-import { data } from 'autoprefixer';
 
 const AddComic = () => {
 
@@ -19,8 +18,8 @@ const AddComic = () => {
         const ratting = form.ratting.value;
         const quantity = form.quantity.value;
         const description = form.description.value;
-        const url = form.url.value ;
-        const newComic = { name, sellerName, email, cetegory, price, ratting, quantity, description , url }
+
+        const newComic = { name, sellerName, email, cetegory, price, ratting, quantity, description  }
         fetch(`http://localhost:5000/comics` , {
             method : "POST" ,
             headers : {
@@ -88,12 +87,6 @@ const AddComic = () => {
                     </label>
                 </div>
             </div>
-                <div className="form-control px-20 pb-10">
-                    <label className="input-group">
-                        <span>Photo Url</span>
-                        <input type="text" name='url' className="input input-bordered  w-full" />
-                    </label>
-                </div>
             <div className='px-20 pb-10'>
                 <input type="submit" value="Submit" className="p-3 bg-sky-300 rounded-lg w-full  font-bold " />
             </div>

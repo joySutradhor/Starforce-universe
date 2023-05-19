@@ -12,6 +12,7 @@ import Register from './Login and Register/Register';
 import Home from './Pages/Home/Home';
 import AddComic from './Pages/AddComic/AddComic';
 import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
+import AllComics from './Pages/AllComics/AllComics';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,11 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>
       },
+      {
+        path : "/allComics",
+        element : <AllComics></AllComics> ,
+        loader : () => fetch(`http://localhost:5000/comics`) 
+      } ,
       {
         path: "/addComic",
         element: <PrivateRoute><AddComic></AddComic></PrivateRoute>

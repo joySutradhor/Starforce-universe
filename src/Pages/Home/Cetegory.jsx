@@ -14,14 +14,14 @@ const Cetegory = () => {
                         className={`tab ${checkActive(1, "active")} p-0 `}
                         onClick={() => handleClick(1)}
                     >
-                        Product Info
+                        Marvel
                     </button></div>
                     <div>
                         <button
                             className={`tab ${checkActive(2, "active")}`}
                             onClick={() => handleClick(2)}
                         >
-                            Customer Reviews
+                            Star Wars
                         </button>
                     </div>
                     <div>
@@ -29,7 +29,8 @@ const Cetegory = () => {
                             className={`tab ${checkActive(3, "active")}`}
                             onClick={() => handleClick(3)}
                         >
-                            Delivery &amp; Returns
+                           Avengers  
+
                         </button>
                     </div>
                 </div>
