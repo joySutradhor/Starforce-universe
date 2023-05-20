@@ -15,6 +15,7 @@ import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
 import AllComics from './Pages/AllComics/AllComics';
 import Details from './Pages/AllComics/Details';
 import MyComic from './Pages/Mycomic/MyComic';
+import Update from './Pages/Mycomic/Update';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,11 @@ const router = createBrowserRouter([
       {
         path: "/myComic",
         element : <PrivateRoute><MyComic></MyComic></PrivateRoute>
+      },
+      {
+        path: "/update/:id",
+        element: <Update></Update> ,
+        loader : ({params}) => fetch(`http://localhost:5000/comics/${params.id}`)
       },
 
       {

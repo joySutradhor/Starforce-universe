@@ -49,7 +49,7 @@ const MyComic = () => {
                                 <td>{comic.price}</td>
                                 <td>{comic.quantity}</td>
                                 <th>
-                                    <Link to={`/details/${comic._id}`}><button className="btn btn-outline btn-accent">Update</button></Link>
+                                    <Link to={`/update/${comic._id}`}><button className="btn btn-outline btn-accent">Update</button></Link>
                                 </th>
                             </tr>
 
