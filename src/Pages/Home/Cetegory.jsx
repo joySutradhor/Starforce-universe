@@ -1,10 +1,69 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Cetegory.css";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../Login and Register/Provider";
+import Swal from "sweetalert2";
 
 const Cetegory = () => {
+    const {user } = useContext(AuthContext)
     const [activeIndex, setActiveIndex] = useState(1);
     const handleClick = (index) => setActiveIndex(index);
     const checkActive = (index, className) => activeIndex === index ? className : "";
+    const [superHero, setSuperHero] = useState([]);
+    useEffect(() => {
+
+        fetch(`http://localhost:5000/superHero`)
+            .then(res => res.json())
+            .then(data => setSuperHero(data))
+    }, [])
+    const [adventure, setAdventure] = useState([]);
+    useEffect(() => {
+
+        fetch(`http://localhost:5000/Adventure`)
+            .then(res => res.json())
+            .then(data => setAdventure(data))
+    }, [])
+    const [scienceFiction, setScienceFiction] = useState([]);
+    useEffect(() => {
+
+        fetch(`http://localhost:5000/scienceFiction`)
+            .then(res => res.json())
+            .then(data => setScienceFiction(data))
+    }, [])
+
+    const handleAdventure = (id) => {
+        console.log("none")
+        if(!user){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Login First',
+              })
+        }
+    }
+
+    const handleSuperHero = () => {
+        if(!user){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Login First',
+              })
+        }
+    }
+
+    const handleFiction = () => {
+        if(!user){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Login First',
+              })
+        }
+    }
+    
+
+    console.log(superHero)
     return (
         <div>
             <h1 className="text-center text-4xl font-serif font-semibold py-12" >Star Force By Cetegory</h1>
@@ -29,7 +88,7 @@ const Cetegory = () => {
                             className={`tab ${checkActive(3, "active")}`}
                             onClick={() => handleClick(3)}
                         >
-                           Science fiction  
+                            Science fiction
 
                         </button>
                     </div>
@@ -37,18 +96,73 @@ const Cetegory = () => {
             </div>
             <div className="panels mx-[10%] py-5">
                 <div className={`panel ${checkActive(1, "active")}`}>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean erat ligula, feugiat at felis vitae, porttitor lacinia quam.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean erat ligula, feugiat at felis vitae, porttitor lacinia quam.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean erat ligula, feugiat at felis vitae, porttitor lacinia quam.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean erat ligula, feugiat at felis vitae, porttitor lacinia quam.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean erat ligula, feugiat at felis vitae, porttitor lacinia quam.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean erat ligula, feugiat at felis vitae, porttitor lacinia quam.</p>
+                    <div className="grid md:grid-cols-2 gap-3 ">
+                        {
+                            superHero?.map(hero => <div key={hero._id}>
+
+                                <div className="card gap-2 card-side bg-base-100 shadow-xl">
+                                    <figure><img src={hero.url} alt="Movie" /></figure>
+                                    <div className="card-body">
+                                        <h2 className="card-title">{hero.name}</h2>
+                                        <p>Price : {hero.price}  Ratting : {hero.ratting}</p>
+                                        <div className="card-actions justify-end">
+                                            <Link to={`details/${hero._id}`}><button  onClick={handleSuperHero} className="btn btn-primary">Details</button></Link>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>)
+                        }
+                    </div>
                 </div>
                 <div className={`panel ${checkActive(2, "active")}`}>
-                    <p>Nulla lobortis quis massa quis lobortis. Nullam porta semper lorem, vel efficitur augue rutrum quis. Suspendisse potenti.</p>
+                <div className="grid md:grid-cols-2 gap-3 ">
+                        {
+                            adventure?.map(hero => <div key={hero._id}>
+
+                                <div className="card gap-2 card-side bg-base-100 shadow-xl">
+                                    <figure><img src={hero.url} className="h-[300px]" alt="Movie" /></figure>
+                                    <div className="card-body">
+                                        <h2 className="card-title">{hero.name}</h2>
+                                        <p>Price : {hero.price}  Ratting : {hero.ratting}</p>
+                                        <div className="card-actions justify-end">
+                                            <Link to={`details/${hero._id}`}><button onClick={handleAdventure} className="btn btn-primary">Details</button></Link>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>)
+                        }
+                    </div>
                 </div>
                 <div className={`panel ${checkActive(3, "active")}`}>
-                    <p>Cras porta consectetur dolor porttitor fringilla. Cras vitae urna ac erat fermentum egestas. Donec egestas cursus scelerisque.</p>
+                <div className="grid md:grid-cols-2 gap-3 ">
+                        {
+                            scienceFiction?.map(hero => <div key={hero._id}>
+
+                                <div className="card gap-2 card-side bg-base-100 shadow-xl">
+                                    <figure><img src={hero.url} alt="Movie" /></figure>
+                                    <div className="card-body">
+                                        <h2 className="card-title">{hero.name}</h2>
+                                        <p>Price : {hero.price}  Ratting : {hero.ratting}</p>
+                                        <div className="card-actions justify-end">
+                                            <Link to={`details/${hero._id}`}><button onClick={handleFiction} className="btn btn-primary">Details</button></Link>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>)
+                        }
+                    </div>
                 </div>
             </div>
         </div>

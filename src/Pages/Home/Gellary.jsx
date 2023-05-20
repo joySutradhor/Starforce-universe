@@ -39,7 +39,7 @@ const Gellary = () => {
   return (
    <div className='px-2'>
     <h2 className='text-center text-4xl font-serif font-semibold pb-12'>Star Force Heros</h2>
-     <div className="gallery grid md:grid-cols-3 gap-2 ">
+     <div className="gallery grid md:grid-cols-3 md:gap-2 ">
         {galleryItems.map((item) => (
           <div key={item.id} className="gallery-item py-4">
             <img src={item.image} alt={item.title} className='rounded-md h-full '/>

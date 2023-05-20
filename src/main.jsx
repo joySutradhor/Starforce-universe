@@ -16,6 +16,7 @@ import AllComics from './Pages/AllComics/AllComics';
 import Details from './Pages/AllComics/Details';
 import MyComic from './Pages/Mycomic/MyComic';
 import Update from './Pages/Mycomic/Update';
+import ErrorPage from './ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
   {
@@ -29,12 +30,12 @@ const router = createBrowserRouter([
       {
         path : "/allComics",
         element : <AllComics></AllComics> ,
-        loader : () => fetch(`https://starforce-universe-server.vercel.app/comics`) 
+        loader : () => fetch(`http://localhost:5000/comics`) 
       } ,
       {
         path : "/details/:id",
         element : <PrivateRoute><Details></Details></PrivateRoute> ,
-        loader : ({params}) => fetch(`https://starforce-universe-server.vercel.app/comics/${params.id}`)
+        loader : ({params}) => fetch(`http://localhost:5000/comics/${params.id}`)
         
       },
       {
@@ -48,7 +49,7 @@ const router = createBrowserRouter([
       {
         path: "/update/:id",
         element: <Update></Update> ,
-        loader : ({params}) => fetch(`https://starforce-universe-server.vercel.app/comics/${params.id}`)
+        loader : ({params}) => fetch(`http://localhost:5000/comics/${params.id}`)
       },
 
       {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
 
     ]
   },
+  {
+    path : "*" ,
+    element : <ErrorPage></ErrorPage>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

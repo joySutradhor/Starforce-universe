@@ -20,14 +20,14 @@ const Header = () => {
         setShowName(false);
     };
     return (
-        <nav className='md:flex justify-around items-center md:py-6 pt-5 bg-slate-50'>
+        <nav className='md:flex justify-around items-center md:py-2 pt-2 bg-slate-50'>
             <div className='text-center'>
-                <Link to="/" className='text-2xl font-mono '>Food Point</Link>
+                <Link to="/" className='text-2xl font-mono '>StarForce Universe</Link>
             </div>
             <div onClick={() => setIsOpen(!isOpen)} className='md:hidden ml-5 '>
                 <span> {isOpen ? <XMarkIcon className="h-8 w-8 text-red-500" /> : <Bars3BottomLeftIcon className="h-8 w-8 text-blue-500" />}</span>
             </div>
-            <div className={`md:flex md:gap-[150px] items-center bg-slate-900 md:bg-slate-50  absolute md:static duration-500 ${isOpen ? "left-0" : "-left-44"}`}>
+            <div className={`md:flex md:gap-[150px] items-center bg-slate-900 md:bg-slate-50  absolute md:static duration-1000 ${isOpen ? "top 0" : "top 400 z-10"}`}>
                 <div className='p-5'>
                     <ul className='md:flex gap-10 font-serif text-white md:text-black'>
                         <li className={location.pathname === "/" ? "text-indigo-600 " : ""}>

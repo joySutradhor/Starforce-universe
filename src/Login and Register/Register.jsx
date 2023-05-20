@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from './Provider';
+import UseTitle from '../Shared/UseTitle';
 
 const Register = () => {
+    UseTitle("Register")
     const { handleRegisterUser , handleUpdateProfile  } = useContext(AuthContext) ;
     const [err , setErr] = useState(false) ;
     const handleRegister =(event) =>{

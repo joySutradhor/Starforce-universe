@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import UseTitle from '../../Shared/UseTitle';
 
 
 
 const AllComics = () => {
     const comics = useLoaderData();
+    UseTitle("All Comics")
 
 
     return (

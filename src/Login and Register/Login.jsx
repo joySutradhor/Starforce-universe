@@ -4,10 +4,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from './Provider';
+import UseTitle from '../Shared/UseTitle';
 
 
 const Login = () => {
-
+    UseTitle("Login")
     const { handleloginUser , handleGoogle } = useContext(AuthContext);
     const [err, setErr] = useState("");
     const navigate = useNavigate();

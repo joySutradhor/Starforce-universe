@@ -20,7 +20,6 @@
   }
   .panel {
     display: none;
-    background-color: #eaeaea;
     padding: 10px;
   }
   .panel.active {

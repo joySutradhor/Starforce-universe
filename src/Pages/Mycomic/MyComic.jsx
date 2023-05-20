@@ -3,16 +3,19 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Login and Register/Provider';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import UseTitle from '../../Shared/UseTitle';
 
 const MyComic = () => {
+    UseTitle("My Comic")
     const { user } = useContext(AuthContext);
     const [comics, setComic] = useState([]);
-    const url = `https://starforce-universe-server.vercel.app/myComics?email=${user.email}`;
+    const url = `http://localhost:5000/myComics?email=${user.email}`;
     useEffect(() => {
-        fetch(url)
+        fetch(url )
             .then(res => res.json())
             .then(data => setComic(data))
     }, [])
+    
 
     const handleDelete = id => {
         Swal.fire({
@@ -25,13 +28,20 @@ const MyComic = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                const updatedComics = comics.filter(newComic => newComic._id !== id);
-                setComic(updatedComics)
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
+                fetch(`http://localhost:5000/comics/${id}`, {
+                    method : "DELETE"
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    const updatedComics = comics.filter(newComic => newComic._id !== id);
+                    setComic(updatedComics)
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been not deleted.',
+                        'success'
+                    )
+                })
             }
         })
     }

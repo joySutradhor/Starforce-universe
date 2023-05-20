@@ -2,8 +2,10 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import UseTitle from '../../Shared/UseTitle';
 
 const Update = () => {
+    UseTitle("Update")
     const update = useLoaderData() ;
     const {_id , cetegory , name , price , quantity , ratting , sellerName , description , url , email} = update ;
     console.log(update)
@@ -21,7 +23,7 @@ const Update = () => {
         const url = form.url.value;
         console.log(url)
         const newComic = { name, sellerName, email, cetegory, price, ratting, quantity, description , url }
-        fetch(`https://starforce-universe-server.vercel.app/comics/${_id}`, {
+        fetch(`http://localhost:5000/comics/${_id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"
