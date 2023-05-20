@@ -2,16 +2,39 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Login and Register/Provider';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const MyComic = () => {
     const { user } = useContext(AuthContext);
     const [comics, setComic] = useState([]);
-    const url = `http://localhost:5000/myComics?email=${user.email}`;
+    const url = `https://starforce-universe-server.vercel.app/myComics?email=${user.email}`;
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
             .then(data => setComic(data))
     }, [])
+
+    const handleDelete = id => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const updatedComics = comics.filter(newComic => newComic._id !== id);
+                setComic(updatedComics)
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            }
+        })
+    }
     return (
         <div className='py-10'>
             <div className="overflow-x-auto w-full px-10">
@@ -33,7 +56,7 @@ const MyComic = () => {
                         comics.map(comic => <tbody key={comic._id}>
                             <tr>
                                 <th>
-                                    <button className="btn btn-circle btn-outline">
+                                    <button onClick={() => handleDelete(comic._id)} className="btn btn-circle btn-sm btn-outline">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
                                     </button>
                                 </th>

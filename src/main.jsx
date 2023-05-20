@@ -29,12 +29,12 @@ const router = createBrowserRouter([
       {
         path : "/allComics",
         element : <AllComics></AllComics> ,
-        loader : () => fetch(`http://localhost:5000/comics`) 
+        loader : () => fetch(`https://starforce-universe-server.vercel.app/comics`) 
       } ,
       {
         path : "/details/:id",
         element : <PrivateRoute><Details></Details></PrivateRoute> ,
-        loader : ({params}) => fetch(`http://localhost:5000/comics/${params.id}`)
+        loader : ({params}) => fetch(`https://starforce-universe-server.vercel.app/comics/${params.id}`)
         
       },
       {
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
       {
         path: "/update/:id",
         element: <Update></Update> ,
-        loader : ({params}) => fetch(`http://localhost:5000/comics/${params.id}`)
+        loader : ({params}) => fetch(`https://starforce-universe-server.vercel.app/comics/${params.id}`)
       },
 
       {

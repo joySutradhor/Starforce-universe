@@ -70,7 +70,7 @@ const AddComic = () => {
                 <div className="form-control">
                     <label className="input-group">
                         <span>Cetegory</span>
-                        <input type="text" name='cetegory' placeholder='Make sure write marvel , star wars or avengers' className="input input-bordered  w-full " required />
+                        <input type="text" name='cetegory' placeholder='' className="input input-bordered  w-full " required />
                     </label>
                 </div>
 

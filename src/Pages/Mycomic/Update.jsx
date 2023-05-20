@@ -1,8 +1,12 @@
+/* eslint-disable react/no-unknown-property */
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Update = () => {
     const update = useLoaderData() ;
+    const {_id , cetegory , name , price , quantity , ratting , sellerName , description , url , email} = update ;
+    console.log(update)
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -17,8 +21,8 @@ const Update = () => {
         const url = form.url.value;
         console.log(url)
         const newComic = { name, sellerName, email, cetegory, price, ratting, quantity, description , url }
-        fetch(`http://localhost:5000/comics`, {
-            method: "POST",
+        fetch(`https://starforce-universe-server.vercel.app/comics/${_id}`, {
+            method: "PUT",
             headers: {
                 "content-type": "application/json"
             },
@@ -26,14 +30,18 @@ const Update = () => {
         })
             .then(res => res.json())
             .then(data => {
-                form.reset();
-                Swal.fire({
-                    position: 'top drawer ',
-                    icon: 'success',
-                    title: 'Added Successfully',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
+                console.log(data)
+                if(data.modifiedCount > 0){
+
+                    form.reset();
+                    Swal.fire({
+                        position: 'center ',
+                        icon: 'success',
+                        title: 'Update Successfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
 
             })
 
@@ -41,63 +49,64 @@ const Update = () => {
     return (
         <form className='mx-auto' onSubmit={handleSubmit}>
         <h2 className='text-center text-4xl font-serif font-semibold'>Update New Comic</h2>
+        <p className='text-center text-xs py-3'>Please Update Only Price , ratting and Description</p>
         <div className='py-8 grid grid-cols-2 px-20 gap-5 '>
             <div className="form-control w-full">
                 <label className="input-group">
                     <span>Comic Name</span>
-                    <input type="text" name='name' className="input input-bordered w-full"  />
+                    <input type="text" defaultValue={name} readOnly name='name' className="input input-bordered w-full"  />
                 </label>
             </div>
             <div className="form-control">
                 <label className="input-group">
                     <span>Seller Name</span>
-                    <input type="text" name='sellerName'  className="input input-bordered  w-full "  />
+                    <input type="text" name='sellerName' readOnly defaultValue={sellerName}  className="input input-bordered  w-full "  />
                 </label>
             </div>
 
             <div className="form-control">
                 <label className="input-group">
                     <span>Email</span>
-                    <input type="email"  name='email' className="input input-bordered  w-full "  />
+                    <input type="email"  name='email' readOnly defaultValue={email} className="input input-bordered  w-full "  />
                 </label>
             </div>
 
             <div className="form-control">
                 <label className="input-group">
                     <span>Cetegory</span>
-                    <input type="text" name='cetegory' placeholder='Make sure write marvel , star wars or avengers' className="input input-bordered  w-full "  />
+                    <input type="text" name='cetegory' readOnly defaultValue={cetegory} placeholder='' className="input input-bordered  w-full "  />
                 </label>
             </div>
 
             <div className="form-control">
                 <label className="input-group">
                     <span>Price</span>
-                    <input type="text"   name='price' className="input input-bordered  w-full "  />
+                    <input type="text" defaultValue={price}  name='price' className="input input-bordered  w-full "  />
                 </label>
             </div>
             <div className="form-control">
                 <label className="input-group">
                     <span>Ratting</span>
-                    <input type="text" name='ratting' className="input input-bordered  w-full "  />
+                    <input type="text" name='ratting' readOnly defaultValue={ratting} className="input input-bordered  w-full "  />
                 </label>
             </div>
             <div className="form-control">
                 <label className="input-group">
                     <span>Quantity</span>
-                    <input type="text" name='quantity' className="input input-bordered  w-full "  />
+                    <input type="text" name='quantity' defaultValue={quantity} className="input input-bordered  w-full "  />
                 </label>
             </div>
             <div className="form-control">
                 <label className="input-group">
                     <span>Description</span>
-                    <input type="text" name='description' className="input input-bordered  w-full "  />
+                    <input type="text" name='description' defaultValue={description} className="input input-bordered  w-full "  />
                 </label>
             </div>
         </div>
         <div className="form-control mx-20 mb-8">
                 <label className="input-group">
                     <span>Url</span>
-                    <input type="text" name='url' className="input input-bordered  w-full "  />
+                    <input type="text" name='url' readOnly defaultValue={url} className="input input-bordered  w-full "  />
                 </label>
             </div>
         <div className='px-20 pb-10'>
