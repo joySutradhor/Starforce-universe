@@ -65,10 +65,10 @@ const Cetegory = () => {
 
     console.log(superHero)
     return (
-        <div>
+        <div >
             <h1 className="text-center text-4xl font-serif font-semibold py-12" >Star Force By Cetegory</h1>
-            <div className="tabs underline">
-                <div className="flex mx-auto gap-10">
+            <div className="tabs underline px-4">
+                <div className="flex md:mx-auto md:gap-10 ">
                     <div><button
                         className={`tab ${checkActive(1, "active")} p-0 `}
                         onClick={() => handleClick(1)}
