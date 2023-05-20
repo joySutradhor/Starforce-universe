@@ -1,29 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 
 
 
 const AllComics = () => {
     const comics = useLoaderData();
-    const [comic , setComic] = useState([]);
-    const handleSearch = (event) => {
-        event.preventDefault()
-        const form = event.target ;
-        const search = form.search.value;
-        console.log(search)
-        console.log(comics)
-        comics.filter(data => {
-            const newData = data.price > 70 ;
-            console.log(newData)
-        })
-        
-        
-        
-    }
-    console.log(comic)
+
+
     return (
         <div>
-            <form onSubmit={handleSearch} className='flex justify-end  items-center mx-5 py-2 gap-5'> <input type="text" placeholder="Ensure comic name is matched" name='search' className="input input-bordered input-accent w-full max-w-xs" />
+            <form className='flex justify-end  items-center mx-5 py-2 gap-5'> <input type="text" placeholder="Ensure comic name is matched" name='search' className="input input-bordered input-accent w-full max-w-xs" />
                 <div>
                     <button className="btn btn-outline btn-accent">Search</button>
                 </div>
