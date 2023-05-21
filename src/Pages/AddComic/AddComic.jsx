@@ -22,7 +22,7 @@ const AddComic = () => {
         const url = form.url.value;
         console.log(url)
         const newComic = { name, sellerName, email, cetegory, price, ratting, quantity, description , url }
-        fetch(`http://localhost:5000/comics`, {
+        fetch(`https://starforce-universe-server.vercel.app/comics`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"

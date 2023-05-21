@@ -5,63 +5,63 @@ import { AuthContext } from "../../Login and Register/Provider";
 import Swal from "sweetalert2";
 
 const Cetegory = () => {
-    const {user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const [activeIndex, setActiveIndex] = useState(1);
     const handleClick = (index) => setActiveIndex(index);
     const checkActive = (index, className) => activeIndex === index ? className : "";
     const [superHero, setSuperHero] = useState([]);
     useEffect(() => {
 
-        fetch(`http://localhost:5000/superHero`)
+        fetch(`https://starforce-universe-server.vercel.app/superHero`)
             .then(res => res.json())
             .then(data => setSuperHero(data))
     }, [])
     const [adventure, setAdventure] = useState([]);
     useEffect(() => {
 
-        fetch(`http://localhost:5000/Adventure`)
+        fetch(`https://starforce-universe-server.vercel.app/Adventure`)
             .then(res => res.json())
             .then(data => setAdventure(data))
     }, [])
     const [scienceFiction, setScienceFiction] = useState([]);
     useEffect(() => {
 
-        fetch(`http://localhost:5000/scienceFiction`)
+        fetch(`https://starforce-universe-server.vercel.app/scienceFiction`)
             .then(res => res.json())
             .then(data => setScienceFiction(data))
     }, [])
 
     const handleAdventure = (id) => {
         console.log("none")
-        if(!user){
+        if (!user) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Login First',
-              })
+            })
         }
     }
 
     const handleSuperHero = () => {
-        if(!user){
+        if (!user) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Login First',
-              })
+            })
         }
     }
 
     const handleFiction = () => {
-        if(!user){
+        if (!user) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Login First',
-              })
+            })
         }
     }
-    
+
 
     console.log(superHero)
     return (
@@ -96,17 +96,19 @@ const Cetegory = () => {
             </div>
             <div className="panels mx-[10%] py-5">
                 <div className={`panel ${checkActive(1, "active")}`}>
-                    <div className="grid md:grid-cols-2 gap-3 ">
+                    <div className="grid md:grid-cols-2 gap-3  ">
                         {
                             superHero?.map(hero => <div key={hero._id}>
 
-                                <div className="card gap-2 card-side bg-base-100 shadow-xl">
+                                <div data-aos="flip-left"
+                                    data-aos-easing="ease-out-cubic"
+                                    data-aos-duration="50000" className="card gap-2 card-side bg-base-100 shadow-xl">
                                     <figure><img src={hero.url} alt="Movie" /></figure>
                                     <div className="card-body">
                                         <h2 className="card-title">{hero.name}</h2>
                                         <p>Price : {hero.price}  Ratting : {hero.ratting}</p>
                                         <div className="card-actions justify-end">
-                                            <Link to={`details/${hero._id}`}><button  onClick={handleSuperHero} className="btn btn-primary">Details</button></Link>
+                                            <Link to={`details/${hero._id}`}><button onClick={handleSuperHero} className="btn btn-primary">Details</button></Link>
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +121,7 @@ const Cetegory = () => {
                     </div>
                 </div>
                 <div className={`panel ${checkActive(2, "active")}`}>
-                <div className="grid md:grid-cols-2 gap-3 ">
+                    <div className="grid md:grid-cols-2 gap-3 ">
                         {
                             adventure?.map(hero => <div key={hero._id}>
 
@@ -142,7 +144,7 @@ const Cetegory = () => {
                     </div>
                 </div>
                 <div className={`panel ${checkActive(3, "active")}`}>
-                <div className="grid md:grid-cols-2 gap-3 ">
+                    <div className="grid md:grid-cols-2 gap-3 ">
                         {
                             scienceFiction?.map(hero => <div key={hero._id}>
 

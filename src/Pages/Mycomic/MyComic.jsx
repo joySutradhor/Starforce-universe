@@ -9,7 +9,7 @@ const MyComic = () => {
     UseTitle("My Comic")
     const { user } = useContext(AuthContext);
     const [comics, setComic] = useState([]);
-    const url = `http://localhost:5000/myComics?email=${user.email}`;
+    const url = `https://starforce-universe-server.vercel.app/myComics?email=${user.email}`;
     useEffect(() => {
         fetch(url )
             .then(res => res.json())
@@ -28,7 +28,7 @@ const MyComic = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/comics/${id}`, {
+                fetch(`https://starforce-universe-server.vercel.app/comics/${id}`, {
                     method : "DELETE"
                 })
                 .then(res => res.json())
