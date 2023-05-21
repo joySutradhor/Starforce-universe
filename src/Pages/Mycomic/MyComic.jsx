@@ -16,7 +16,6 @@ const MyComic = () => {
             .then(data => setComic(data))
     }, [])
     
-
     const handleDelete = id => {
         Swal.fire({
             title: 'Are you sure?',
@@ -46,7 +45,8 @@ const MyComic = () => {
         })
     }
     return (
-        <div className='py-10'>
+        <div className='pb-10'>
+            <h2 className='py-5 text-xs text-center'> Data Filter Ascending order by Price  </h2>
             <div className="overflow-x-auto w-full px-10">
                 <table className="table w-full">
                     {/* head */}

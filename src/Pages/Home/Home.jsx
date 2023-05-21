@@ -3,6 +3,8 @@ import Banner from './Banner';
 import Gellary from './Gellary';
 import Cetegory from './Cetegory';
 import UseTitle from '../../Shared/UseTitle';
+import TestimonialSection from '../../TestimonialSection/TestimonialSection';
+import Team from '../../Team/Team';
 
 const Home = () => {
     UseTitle("Home")
@@ -11,6 +13,8 @@ const Home = () => {
                 <Banner></Banner>
                 <Gellary></Gellary>
                 <Cetegory></Cetegory>
+                <TestimonialSection></TestimonialSection>
+                <Team></Team>
         </div>
     );
 };

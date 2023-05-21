@@ -3,6 +3,8 @@ import "./Cetegory.css";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Login and Register/Provider";
 import Swal from "sweetalert2";
+import Aos from "aos";
+import "aos/dist/aos.css"
 
 const Cetegory = () => {
     const { user } = useContext(AuthContext)
@@ -63,9 +65,11 @@ const Cetegory = () => {
     }
 
 
-    console.log(superHero)
+    useEffect(() => {
+        Aos.init();
+    }, [])
     return (
-        <div >
+        <div data-aos="zoom-in" >
             <h1 className="text-center text-4xl font-serif font-semibold py-12" >Star Force By Cetegory</h1>
             <div className="tabs underline px-4">
                 <div className="flex md:mx-auto md:gap-10 ">
@@ -100,9 +104,8 @@ const Cetegory = () => {
                         {
                             superHero?.map(hero => <div key={hero._id}>
 
-                                <div data-aos="flip-left"
-                                    data-aos-easing="ease-out-cubic"
-                                    data-aos-duration="50000" className="card gap-2 card-side bg-base-100 shadow-xl">
+                                <div 
+                                    className="card gap-2 card-side bg-base-100 shadow-xl">
                                     <figure><img src={hero.url} alt="Movie" /></figure>
                                     <div className="card-body">
                                         <h2 className="card-title">{hero.name}</h2>
